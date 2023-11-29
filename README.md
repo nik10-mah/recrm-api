@@ -19,4 +19,4 @@ CLIENT_URL=http://localhost:3000/
 ```
 
 ## Deploymemnt
-To run the app on VM linux server, just install **pm2** tool and run `PORT=4000 pm2 start npm --name "recrm-api" index.js` in project root. Project will run on **127.0.0.1:4000**
+To run the app on VM linux server, just install **pm2** tool and run `PORT=4000 pm2 start --name "recrm-api" index.js` in project root. Project will run on **127.0.0.1:4000**

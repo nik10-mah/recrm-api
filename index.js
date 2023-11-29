@@ -3,7 +3,7 @@ const db = require('./db/config')
 const route = require('./controllers/route');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const port = 5001
+const port = process.env.PORT || 4000;
 require('dotenv').config()
 const fs = require('fs');
 const path = require('path');
@@ -19,7 +19,7 @@ app.use('/api', route);
 
 app.get('/', async (req, res) => {
 
-    res.send('Welcome to my world...')
+    res.send('Welcome to Real Estate CRM API Interface')
 
     //! for Delete folder ./uploads
     // const folderPath = './uploads'; // Use the appropriate path here
