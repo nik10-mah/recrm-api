@@ -26,6 +26,10 @@ const property = new mongoose.Schema({
     //4. Listing and Marketing Details:
     listingStatus: String,
     listingAgentOrTeam: String,
+    listingAgent: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
     listingDate: String,
     marketingDescription: String,
     multipleListingService: String,

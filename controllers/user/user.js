@@ -27,7 +27,7 @@ const adminRegister = async (req, res) => {
 // User Registration
 const register = async (req, res) => {
     try {
-        const { username, password, firstName, lastName, phoneNumber } = req.body;
+        const { username, password, firstName, lastName, phoneNumber, bio, role, experience } = req.body;
         const user = await User.findOne({ username: username })
 
 
@@ -37,7 +37,7 @@ const register = async (req, res) => {
             // Hash the password
             const hashedPassword = await bcrypt.hash(password, 10);
             // Create a new user
-            const user = new User({ username, password: hashedPassword, firstName, lastName, phoneNumber });
+            const user = new User({ username, password: hashedPassword, firstName, lastName, phoneNumber, role, bio, experience });
             // Save the user to the database
             await user.save();
             res.status(200).json({ message: 'User created successfully' });
@@ -59,7 +59,7 @@ const index = async (req, res) => {
 const view = async (req, res) => {
     try {
         let user = await User.findOne({ _id: req.params.id })
-        if (!user) return res.status(404).json({ message: "no Data Found." })
+        if (!user) return res.status(404).json({ message: "No Data Found." })
         res.status(200).json(user)
     } catch (error) {
         res.status(500).json({ error });
@@ -98,7 +98,7 @@ const deleteMany = async (req, res) => {
 
 const edit = async (req, res) => {
     try {
-        let { username, firstName, lastName, phoneNumber } = req.body
+        let { username, firstName, lastName, phoneNumber, role, bio, experience } = req.body
 
         // Hash the password
         // const hashedPassword = await bcrypt.hash(password, 10);
@@ -106,7 +106,7 @@ const edit = async (req, res) => {
             { _id: req.params.id },
             {
                 $set: {
-                    username, firstName, lastName, phoneNumber
+                    username, firstName, lastName, phoneNumber, role, bio, experience
                 }
             }
         );

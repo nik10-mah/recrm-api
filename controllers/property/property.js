@@ -44,7 +44,10 @@ const edit = async (req, res) => {
 
 const view = async (req, res) => {
     const { id } = req.params
-    let property = await Property.findOne({ _id: id })
+    let property = await Property.findOne({ _id: id }).populate({
+        path: 'listingAgent',
+        match: { deleted: false } // Populate only if createBy.deleted is false
+    })
     let result = await Contact.find({ deleted: false })
 
     let filteredContacts = result.filter((contact) => contact.interestProperty.includes(id));
